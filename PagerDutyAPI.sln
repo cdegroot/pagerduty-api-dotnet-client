@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagerDutyAPI", "PagerDutyAPI\PagerDutyAPI.csproj", "{26668ABF-D9B6-46C3-84F7-B7A4F35F24D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PagerDutyAPITests", "PagerDutyAPITests\PagerDutyAPITests.csproj", "{4A771FA6-08AA-4C04-B32B-FB175C5284E0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26668ABF-D9B6-46C3-84F7-B7A4F35F24D3} = {26668ABF-D9B6-46C3-84F7-B7A4F35F24D3}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{348F0D80-2BE1-4330-A85E-DFFF327E62CB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26668ABF-D9B6-46C3-84F7-B7A4F35F24D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26668ABF-D9B6-46C3-84F7-B7A4F35F24D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26668ABF-D9B6-46C3-84F7-B7A4F35F24D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26668ABF-D9B6-46C3-84F7-B7A4F35F24D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A771FA6-08AA-4C04-B32B-FB175C5284E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A771FA6-08AA-4C04-B32B-FB175C5284E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A771FA6-08AA-4C04-B32B-FB175C5284E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A771FA6-08AA-4C04-B32B-FB175C5284E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
