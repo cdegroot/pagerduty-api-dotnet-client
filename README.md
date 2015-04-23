@@ -5,6 +5,14 @@ This project encapsulates the PagerDuty API in a .NET DLL. At the moment,
 only the [Integrations API](https://developer.pagerduty.com/documentation/integration/events)
 is supported. 
 
+Installation
+------------
+
+The DLL is available on [NuGet](https://www.nuget.org/packages/PagerDutyAPI).
+
+Usage
+-----
+
 There are two ways to create a client - by directly passing a service key, or 
 by passing a service name and a registry root. The latter one is more Windows-like
 and lets you keep your service keys safe and all together. Example (more example

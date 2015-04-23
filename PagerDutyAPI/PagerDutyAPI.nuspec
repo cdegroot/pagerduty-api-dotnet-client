@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>PagerDutyAPI</id>
+    <version>1.0.0</version>
+    <title>PagerDuty API .NET Client</title>
+    <authors>Cees de Groot</authors>
+    <owners>Cees de Groot</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/cdegroot/pagerduty-api-dotnet-client</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A client for the PagerDuty Event Integration API for .NET</description>
+    <releaseNotes>Initial release</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>PagerDuty</tags>
+  </metadata>
+</package>
