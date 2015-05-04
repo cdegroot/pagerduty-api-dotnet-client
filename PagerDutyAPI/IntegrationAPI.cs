@@ -45,6 +45,43 @@ namespace PagerDutyAPI
         }
 
     }
+    
+    // <summary> 
+    // Base class for context support. This allows you to send
+    // extra rich data along with a trigger event.
+    // </summary>
+    public class Context {
+        readonly string @type;
+        
+        protected Context(string context_type) {
+            this.@type = context_type;
+        }
+    }
+    
+    // <summary>
+    // A link-type context
+    // </summary>
+    public class Link : Context {
+        readonly string href;
+        readonly string text;
+        public Link(string href, string text): base("link)") {
+            this.href = href;
+            this.text = text;
+        }
+    }
+    
+    // <summary>
+    // An image-type context
+    // </summary>
+    public class Image : Context {
+        readonly string src;
+        readonly string href;
+        public Image(string src, string href): base("image") {
+            this.src = src;
+            this.href = href;
+        }
+    }
+    
 
     class BaseRequest {
         public string service_key { get; set; }
@@ -60,10 +97,11 @@ namespace PagerDutyAPI
     class TriggerRequest: BaseRequest {      
         public string client { get; set; }
         public string client_url { get; set; }
+        public List<Context> context { get; set; }
  
         public static TriggerRequest MakeRequest(
             APIClientInfo client, string serviceKey,
-            string description, string incidentKey, string data) {
+            string description, string incidentKey, string data, List<Context> context) {
 
              return new TriggerRequest() {
                  event_type = "trigger",
@@ -72,7 +110,8 @@ namespace PagerDutyAPI
                  incident_key = incidentKey,
                  client = client.Name,
                  client_url = client.Url,
-                 details = data
+                 details = data,
+                 context = context,
              };
         }
     }
@@ -195,8 +234,8 @@ namespace PagerDutyAPI
         // <param name="description">The description (summary) of the trigger</param>
         // <param name="data">Extra optional data to send along</param>
         // <param name="incidentKey">The incidentKey (if null, PagerDuty will create one)</param>
-        public EventAPIResponse Trigger(string description, string data, string incidentKey = null) {
-            var trigger = TriggerRequest.MakeRequest(apiClientInfo, serviceKey, description, incidentKey, data);
+        public EventAPIResponse Trigger(string description, string data, string incidentKey = null, List<Context> context = null) {
+            var trigger = TriggerRequest.MakeRequest(apiClientInfo, serviceKey, description, incidentKey, data, context);
             return Execute(trigger);
         }
 
