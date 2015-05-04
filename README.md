@@ -59,7 +59,7 @@ This is a personal project which I may or may not support in my spare time,
 so please submit PRs rather than issues, you have a much better chance of
 getting stuff fixed that way :-)
 
-1. Fork it ( https://github.com/PagerDuty/pagerduty-api-dotnet-client/fork )
+1. Fork it ( https://github.com/cdegroot/pagerduty-api-dotnet-client/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
