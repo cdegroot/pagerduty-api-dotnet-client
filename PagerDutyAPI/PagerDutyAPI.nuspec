@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>PagerDutyAPI</id>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <title>PagerDuty API .NET Client</title>
     <authors>Cees de Groot</authors>
     <owners>Cees de Groot</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/cdegroot/pagerduty-api-dotnet-client</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A client for the PagerDuty Event Integration API for .NET</description>
-    <releaseNotes>Initial release</releaseNotes>
+    <releaseNotes>Added support for rich events</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>PagerDuty</tags>
   </metadata>

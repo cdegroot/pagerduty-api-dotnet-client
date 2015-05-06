@@ -17,9 +17,13 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PagerDutyAPI;
+using System.Collections.Generic;
 
 namespace PagerDutyAPITests
 {
+    // Note that this is an integration test. Create a service key and stash it in the 
+    // registry first! You can then optionally review whether everything lands as expected
+    // in the PagerDuty web interface
     [TestClass]
     public class IntegrationAPITest
     {
@@ -29,8 +33,16 @@ namespace PagerDutyAPITests
             var apiClientInfo = new APIClientInfo("pagerduty", "http://www.pagerduty.com");
             var client = PagerDutyAPI.IntegrationAPI.MakeClient(apiClientInfo, "HKEY_CURRENT_USER", "Test Service");
             var incidentKey = System.Guid.NewGuid().ToString();
+            var data = new Dictionary<String, String> {
+                {"what", "the roof"},
+                {"state", "on fire"}
+            };
+            var contexts = new List<Context> {
+                new Link("http://www.pagerduty.com", "PagerDuty site"),
+                new Image("http://media.giphy.com/media/dV7g3UEFtohfG/giphy.gif", "http://giphy.com")
+            };
 
-            var response = client.Trigger("test event", "test data", incidentKey);
+            var response = client.Trigger("test event", data, incidentKey, contexts);
             AssertResponseIsSuccess(incidentKey, response);
 
             response = client.Acknowledge(incidentKey, "test ack", "more test data");
