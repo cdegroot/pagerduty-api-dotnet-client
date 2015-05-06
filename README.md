@@ -42,8 +42,8 @@ Once you have the client, there are three calls you can make to it corresponding
 ```csharp
 var incidentKey = System.Guid.NewGuid().ToString();
 var data = new Dictionary<String, String> {
-{"what", "the roof"},
-{"state", "on fire"}
+    {"what", "the roof"},
+    {"state", "on fire"}
 };
 var contexts = new List<Context> {
 new Link("http://www.pagerduty.com", "PagerDuty site"),
