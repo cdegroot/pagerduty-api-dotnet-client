@@ -18,28 +18,33 @@ by passing a service name and a registry root. The latter one is more Windows-li
 and lets you keep your service keys safe and all together. Example (more example
 code in the unit test suite):
 
-	var client = PagerDutyAPI.IntegrationAPI.MakeClient(apiClientInfo, "HKEY_CURRENT_USER", "Test Service");
+    var client = PagerDutyAPI.IntegrationAPI.MakeClient(apiClientInfo, "HKEY_CURRENT_USER", "Test Service");
             
 This will grab the keys from the current user hive using the path ```Software\PagerDuty\ServiceKeys``` relative to the root.
 
 Note that to run the included tests, you need to have a valid API key in the registry under that path 
 with the name "Test Service". If you don't want to use the registry, you can pass in the API key directly:
 
-	var client = PagerDutyAPI.IntegrationAPI.MakeClient(apiClientInfo, "<your service key here>");
+    var client = PagerDutyAPI.IntegrationAPI.MakeClient(apiClientInfo, "<your service key here>");
 	
 Both calls take an ```APIClientInfo``` object, which is basically a simple wrapper to make the above argument lists a little less noisy. It contains the client info which is passed on to PagerDuty	and will show in the various interfaces as a link for more details (for example, a link back to the monitoring system, etcetera). Creating it is just a matter of:
 
-	var apiClientInfo = new APIClientInfo("PagerDuty", "http://www.pagerduty.com");
+    var apiClientInfo = new APIClientInfo("PagerDuty", "http://www.pagerduty.com");
 	
 Once you have the client, there are three calls you can make to it corresponding to PagerDuty's Integration API Events:
 
-	var incidentKey = System.Guid.NewGuid().ToString();
-	var response = client.Trigger("test event", "test data", incidentKey);
-	
-	response = client.Acknowledge(incidentKey, "test ack", "more test data");
-	
-	response = client.Resolve(incidentKey, "test resolve", "even more test data");
-	
+    var incidentKey = System.Guid.NewGuid().ToString();
+    var data = new Dictionary<String, String> {
+        {"what", "the roof"},
+        {"state", "on fire"}
+    };
+    var contexts = new List<Context> {
+    new Link("http://www.pagerduty.com", "PagerDuty site"),
+    new Image("http://media.giphy.com/media/dV7g3UEFtohfG/giphy.gif", "http://giphy.com")
+    };
+
+    var response = client.Trigger("test event", data, incidentKey, contexts);	
+
 In all cases, you get an ```EventAPIResponse``` object back that contains ```Status```, ```Message``` and ```IncidentKey``` properties corresponding to the json returned by the Integration API. 
 
 Retries
