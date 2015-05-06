@@ -90,7 +90,7 @@ namespace PagerDutyAPI
         public string event_type { get; set; }
         public string description { get; set; }
         public string incident_key { get; set; }
-        public string details { get; set; }
+        public Object details { get; set; }
     }
 
     // <summary>
@@ -103,7 +103,7 @@ namespace PagerDutyAPI
  
         public static TriggerRequest MakeRequest(
             APIClientInfo client, string serviceKey,
-            string description, string incidentKey, string data, List<Context> contexts) {
+            string description, string incidentKey, Object details, List<Context> contexts) {
 
              return new TriggerRequest() {
                  event_type = "trigger",
@@ -112,7 +112,7 @@ namespace PagerDutyAPI
                  incident_key = incidentKey,
                  client = client.Name,
                  client_url = client.Url,
-                 details = data,
+                 details = details,
                  contexts = contexts,
              };
         }
@@ -236,7 +236,7 @@ namespace PagerDutyAPI
         // <param name="description">The description (summary) of the trigger</param>
         // <param name="data">Extra optional data to send along</param>
         // <param name="incidentKey">The incidentKey (if null, PagerDuty will create one)</param>
-        public EventAPIResponse Trigger(string description, string data, string incidentKey = null, List<Context> contexts = null) {
+        public EventAPIResponse Trigger(string description, Object data, string incidentKey = null, List<Context> contexts = null) {
             var trigger = TriggerRequest.MakeRequest(apiClientInfo, serviceKey, description, incidentKey, data, contexts);
             return Execute(trigger);
         }
@@ -247,9 +247,9 @@ namespace PagerDutyAPI
         // </summary>
         // <param name="incidentKey">The incident key for the open incident</param>
         // <param name="description">Description for the acknowledgement</param>
-        // <param name="data">Extra optional data to send along</param>
-        public EventAPIResponse Acknowledge(string incidentKey, string description, string data) {
-            var acknowledge = AcknowledgeRequest.MakeRequest(serviceKey, description, incidentKey, data);
+        // <param name="details">Extra optional data to send along</param>
+        public EventAPIResponse Acknowledge(string incidentKey, string description, string details) {
+            var acknowledge = AcknowledgeRequest.MakeRequest(serviceKey, description, incidentKey, details);
             return Execute(acknowledge);
         }
 
