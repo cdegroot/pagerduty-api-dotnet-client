@@ -39,7 +39,7 @@ namespace PagerDutyAPITests
             };
             var contexts = new List<Context> {
                 new Link("http://www.pagerduty.com", "PagerDuty site"),
-                new Image("http://media.giphy.com/media/dV7g3UEFtohfG/giphy.gif", "http://giphy.com")
+                new Image("https://media.giphy.com/media/dV7g3UEFtohfG/giphy.gif", "http://giphy.com")
             };
 
             var response = client.Trigger("test event", data, incidentKey, contexts);
